@@ -27,8 +27,14 @@ const typeDefs = gql`
   type Cart { 
       
     id : String
-      item : [Shoe]
+    item : [Shoe]
   }
+
+  type Mutation {
+    updateUserAge(id: ID!, age: Int!): User
+  }
+
+  
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
@@ -37,28 +43,48 @@ const typeDefs = gql`
 
   type Query {
     shoes: [Shoe]
-    users : [User]
+    user : [User]
   }
+
 `;
 
-
-const shoes = [
+const shoesData = [
     {
-      name: 'Harry Potter and the Chamber of Secrets',
-      author: 'J.K. Rowling',
+      name: 'Nike X',
+      manufacturer: 'Nike',
     },
     {
-      name: 'Jurassic Park',
-      author: 'Michael Crichton',
+      name: 'Air Jordan',
+      manufacturer: 'Nike',
     },
+    {
+        name: 'Air Max',
+        manufacturer: 'Nike',
+      },
   ];
 
+
+  const usersData = [
+    {
+      firstname: 'Nike X',
+      lastname: 'Nike',
+    },
+    {
+      firstname: 'Air Jordan',
+      lastname: 'Nike',
+    },
+    {
+      firstname: 'Air Max',
+      lastname: 'Nike',
+      },
+  ];
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
     Query: {
-      shoes: () => shoes,
+      shoes: () => shoesData,
+      user : () => usersData
     },
   };
 
