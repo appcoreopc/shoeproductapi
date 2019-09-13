@@ -32,15 +32,12 @@ const typeDefs = gql`
 
   type Mutation {
     updateUserAge(id: ID!, age: Int!): User
-  }
-
-  
+  }  
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each. In this
   # case, the "books" query returns an array of zero or more Books (defined above).
   
-
   type Query {
     shoes: [Shoe]
     user : [User]
@@ -63,6 +60,7 @@ const shoesData = [
       },
   ];
 
+  function getUsers() {
 
   const usersData = [
     {
@@ -79,12 +77,16 @@ const shoesData = [
       },
   ];
 
+  return usersData;
+
+}
+
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
     Query: {
       shoes: () => shoesData,
-      user : () => usersData
+      user : () => getUsers()
     },
   };
 
