@@ -12,7 +12,8 @@ const typeDefs = gql`
     name : String
     manufacturer: String
     producttype : String 
-    price : Float 
+    price : Float
+    
   }
 
   type User { 
@@ -49,6 +50,8 @@ const typeDefs = gql`
   }
 
 `;
+
+const POST_ADDED = 'POST_ADDED';
 
 const shoesData = [
     {
@@ -110,6 +113,8 @@ const resolvers = {
     Mutation: { 
       updateUserAge : (id, age) => {
 
+        pubsub.publish(POST_ADDED, { postAdded: 100 });
+
         return {
         firstname: 'Nike X',
         lastname: 'Nike',
@@ -130,3 +135,20 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
+
+
+
+// subscription {
+//   cartItemUpdate  {
+//     id
+
+//  }
+// }
+
+
+// mutation {
+//   updateUserAge(id: 1, age : 10) {
+//      id
+//      firstname
+//   }
+// }
