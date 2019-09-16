@@ -96,7 +96,6 @@ const pubsub = new PubSub();
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
-  
     Query: {
       shoes: () => shoesData,
       user : () => getUsers()
@@ -109,7 +108,14 @@ const resolvers = {
     },
 
     Mutation: { 
-      updateUserAge : (id, age) =>  getUsers()
+      updateUserAge : (id, age) => {
+
+        return {
+        firstname: 'Nike X',
+        lastname: 'Nike',
+        }
+      }
+      
     }
 
   };
